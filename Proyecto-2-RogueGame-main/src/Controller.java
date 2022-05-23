@@ -1,3 +1,3 @@
 public class Controller {
-    GameFieldView FieldVie = new GameFieldView();
+    GameFieldView FieldView = new GameFieldView();
 }
