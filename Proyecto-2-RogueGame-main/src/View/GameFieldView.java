@@ -1,8 +1,11 @@
-import java.awt.event.KeyListener;
-import java.lang.reflect.Field;
+package View;
+//import java.awt.event.KeyListener;
+//import java.lang.reflect.Field;
 
 import javax.swing.*;
 import java.awt.GridLayout;
+import Common.Box;
+import Common.*;
 
 
 public class GameFieldView extends JFrame implements Constants{

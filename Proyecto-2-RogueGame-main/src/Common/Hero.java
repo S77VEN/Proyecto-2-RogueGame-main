@@ -1,3 +1,4 @@
+package Common;
 public class Hero implements Constants{
 
     int[] Position;
