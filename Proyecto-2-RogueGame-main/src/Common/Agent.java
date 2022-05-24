@@ -1,4 +1,4 @@
 package Common;
-public class Agent {
+public abstract class Agent implements Observador {
     
 }

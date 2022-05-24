@@ -1,6 +1,6 @@
 package Model;
-import Common.*;
+//import Common.*;
 
 public class GameModel {
-    private Hero character = new Hero();
+    
 }
