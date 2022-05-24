@@ -1,18 +1,18 @@
 package View;
-//import java.awt.event.KeyListener;
 //import java.lang.reflect.Field;
-
 import javax.swing.*;
 import java.awt.GridLayout;
+import java.awt.event.*;
 import Common.Box;
 import Common.*;
+
 
 
 public class GameFieldView extends JFrame implements Constants{
     public JPanel Field;
     public Box[][] ArrayField;
 
-    public GameFieldView(){
+    public GameFieldView(KeyListener key_listener){
 
         Field = new JPanel();
         ArrayField = new Box[FIELD_SIZE][FIELD_SIZE];
