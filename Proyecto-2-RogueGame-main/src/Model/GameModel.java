@@ -23,19 +23,24 @@ public class GameModel {
         return listaAliados;
     }
 
-    public Enemigo enemyFactory (){
-        Enemigo newEnemy = new Enemigo(7,7);
+    public Enemigo enemyFactory (int posX, int posY){
+        Enemigo newEnemy = new Enemigo(posX,posY);
         this.addEnemigo(newEnemy);
         return newEnemy;
     }
 
-    public void allyFactory(){
-        Aliado newAlly = new Aliado(6,6);
+    public Aliado allyFactory(int posX, int posY){
+        Aliado newAlly = new Aliado(posX, posY);
         this.addAliado(newAlly);
+        return newAlly;
     }
 
     public void eliminarEnemigo(Enemigo enemy){
         listaEnemigos.remove(enemy);
+    }
+
+    public void eliminarAliado (Aliado ally){
+        listaAliados.remove(ally);
     }
 
     // ArrayList<> de enemigos y aliados

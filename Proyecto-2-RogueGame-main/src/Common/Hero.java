@@ -42,9 +42,12 @@ public class Hero implements Constants, SujetoObservado{
         return salud;
     }
 
+    public void aumentarSalud(){
+        this.salud++;
+    }
+
     public void disminuirSalud(){
         this.salud--;
-        System.out.println("SALUD: " + this.salud);
     }
 
     public void cambiarXY(int posX, int posY){
@@ -56,6 +59,10 @@ public class Hero implements Constants, SujetoObservado{
 
     public void anadirObservador(Observador o){
         observadores.add(o);
+    }
+
+    public void eliminarObservador (Observador o){
+        observadores.remove(o);
     }
 
     @Override
