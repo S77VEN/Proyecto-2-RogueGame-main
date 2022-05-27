@@ -2,7 +2,6 @@ package View;
 //import java.lang.reflect.Field;
 import javax.swing.*;
 import java.awt.GridLayout;
-import java.awt.event.*;
 import Common.Box;
 import Common.*;
 
@@ -12,7 +11,7 @@ public class GameFieldView extends JFrame implements Constants{
     public JPanel Field;
     public Box[][] ArrayField;
 
-    public GameFieldView(KeyListener key_listener){
+    public GameFieldView(){
 
         Field = new JPanel();
         ArrayField = new Box[FIELD_SIZE][FIELD_SIZE];
@@ -26,6 +25,7 @@ public class GameFieldView extends JFrame implements Constants{
             }
         }
 
+        this.ArrayField[0][0].setBackground(HERO_COLOR);
         this.add(Field);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();

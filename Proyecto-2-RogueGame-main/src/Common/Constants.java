@@ -10,7 +10,8 @@ public interface Constants {
 
     public static final int FIELD_SIZE = 21;
 
-    public static final Color TARGET_COLOR = Color.GREEN;
+    public static final Color HERO_COLOR = Color.WHITE;
+    public static final Color ENEMY_COLOR = Color.RED;
     public static final Color BG_COLOR = Color.LIGHT_GRAY;
-    public static final Color DOT_COLOR = Color.PINK;
+    public static final Color ALLY_COLOR = Color.GREEN;
 }
