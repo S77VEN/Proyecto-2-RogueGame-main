@@ -1,8 +1,8 @@
 package Common;
 import java.awt.Dimension;
-import javax.swing.JButton;
+import javax.swing.JPanel;
 
-public class Box extends JButton implements Constants {
+public class Box extends JPanel implements Constants {
     private int[] coords;
 
     public Box(int posX,int posY){
@@ -29,5 +29,4 @@ public class Box extends JButton implements Constants {
     public void clearBox(){
         setBackground(BG_COLOR);
     }
-
 }

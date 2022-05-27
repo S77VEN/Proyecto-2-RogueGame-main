@@ -51,11 +51,6 @@ public class Controller implements KeyListener{
 
     @Override
     public void keyTyped(KeyEvent e) {
-        if (personaje.getSalud() <= 0){
-            System.exit(0);
-        }
-            
-
         System.out.println(e.getKeyChar());
 
         switch(e.getKeyChar()){
@@ -129,6 +124,9 @@ public class Controller implements KeyListener{
             for (Enemigo enemy: gameModel.getEnemigos()){
                 moveEnemy(enemy);
             }
+        }
+        if (personaje.getSalud() <= 0){
+            System.exit(0);
         }
     }
 
