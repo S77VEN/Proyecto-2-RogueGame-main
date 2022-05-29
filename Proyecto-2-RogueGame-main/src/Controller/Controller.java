@@ -11,6 +11,8 @@ public class Controller implements KeyListener{
     GameFieldView fieldView;
     GameModel gameModel;
     Hero personaje;
+    int countAlly;
+    int ultimaDireccion;
     int count;
     int turno;
 
@@ -18,6 +20,8 @@ public class Controller implements KeyListener{
     public Controller (){
         count = 0;
         turno = 0;
+        countAlly = 0;
+        ultimaDireccion = 0;
 
         fieldView = new GameFieldView();
         fieldView.addKeyListener(this);
@@ -56,7 +60,7 @@ public class Controller implements KeyListener{
 
     public void aliadoEncima (){
         for (Aliado ally: gameModel.getAliados()){
-            if (ally.getPosX() == personaje.getPosX() && ally.getPosY() == personaje.getPosY() ){
+            if (ally.getPosX() == personaje.getPosX() && ally.getPosY() == personaje.getPosY()){
                 desaparecerAliado(ally);
                 personaje.aumentarSalud();
                 moveHero();
@@ -71,6 +75,7 @@ public class Controller implements KeyListener{
     public void moveHero(){
         fieldView.ArrayField[personaje.getLastX()][personaje.getLastY()].clearBox();
         fieldView.ArrayField[personaje.getPosX()][personaje.getPosY()].setAsHero(personaje.getSalud());
+        personaje.notificar();
     }
 
     public void moveEnemy(Enemigo enemy){
@@ -93,20 +98,39 @@ public class Controller implements KeyListener{
     }
 
     public boolean enemigoCerca (Enemigo enemy){
-        int diferenciaX = Math.abs(personaje.getPosX() - enemy.getPosX());
-        int diferenciaY = Math.abs(personaje.getPosY() - enemy.getPosY());
-
-        if ((diferenciaX == 1  || diferenciaX == 0) && (diferenciaY == 1  || diferenciaY == 0)){
-            return true;
+        if (ultimaDireccion == 0){
+            if (enemy.getPosX() == personaje.getPosX() - 1 && enemy.getPosY() == personaje.getPosY() ) {
+                return true;
+            }
+            else{return false;}
         }
-        return false;
+        else if (ultimaDireccion == 1){
+            if (enemy.getPosY() == personaje.getPosY() - 1 && enemy.getPosX() == personaje.getPosX()){
+                return true;
+            }
+            else{return false;}
+        }
+        else if (ultimaDireccion == 2){
+            if (enemy.getPosX() == personaje.getPosX() + 1 && enemy.getPosY() == personaje.getPosY()){
+                return true;
+            }
+            else{return false;}
+        }
+        else if (ultimaDireccion == 3){
+            if (enemy.getPosY() == personaje.getPosY() + 1 && enemy.getPosX() == personaje.getPosX()){
+                return true;
+            }
+            else{return false;}
+        }
+        else{return false;}
+
     }
 
     public boolean aliadoCerca (Aliado ally){
         int diferenciaX = Math.abs(personaje.getPosX() - ally.getPosX());
         int diferenciaY = Math.abs(personaje.getPosY() - ally.getPosY());
 
-        if ((diferenciaX == 1  || diferenciaX == 0) && (diferenciaY == 1  || diferenciaY == 0)){
+        if ((diferenciaX == 2  || diferenciaX == 1 || diferenciaX == 0) && ( diferenciaY == 2 || diferenciaY == 1  || diferenciaY == 0)){
             return true;
         }
         return false;
@@ -120,8 +144,10 @@ public class Controller implements KeyListener{
             newX = RandomCoords();
             newY = RandomCoords();
         }
+
         Enemigo newEnemy = gameModel.enemyFactory(newX, newY);
         personaje.anadirObservador(newEnemy);
+    
     }
 
     public void crearAliado(){
@@ -132,96 +158,67 @@ public class Controller implements KeyListener{
             newY = RandomCoords();
         }
         gameModel.allyFactory(newX, newY);
-
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-        System.out.print("\033[H\033[2J");
         System.out.println(e.getKeyChar());
 
         switch(e.getKeyChar()){
             case 'w':
-                if (turno == 0){
-                    personaje.cambiarXY(-1, 0);
-                    moveHero();
-                    personaje.notificar();
-                    turno = 1;
-                    count++;
+                personaje.cambiarXY(-1, 0);
+                moveHero();
+                for (Enemigo enemy: gameModel.getEnemigos()){
+                    enemy.cambiarXY(); 
+                    moveEnemy(enemy);
                 }
-                else if (turno == 1){
-                    personaje.notificar();
-                    for (Enemigo enemy: gameModel.getEnemigos()){
-                        enemy.cambiarXY();
-                        moveEnemy(enemy);
-
-                    }
-                    turno = 0;
-                }
+                ultimaDireccion = 0;
+                count++;
                 break;
 
             case 'a':
-                if (turno == 0){
-                    personaje.cambiarXY(0, -1);
-                    moveHero();
-                    personaje.notificar();
-                    turno = 1;
-                    count++;
-                }else if (turno == 1){
-                    personaje.notificar();
-                    for (Enemigo enemy: gameModel.getEnemigos()){
-                        enemy.cambiarXY(); 
-                        moveEnemy(enemy);
-                    }
-                    turno = 0;
+                personaje.cambiarXY(0, -1);
+                moveHero();
+                for (Enemigo enemy: gameModel.getEnemigos()){
+                    enemy.cambiarXY(); 
+                    moveEnemy(enemy);
                 }
+                ultimaDireccion = 1;
+                count++;
                 break;
 
             case 's':
-                if(turno == 0){
-                    personaje.cambiarXY(1, 0);
-                    moveHero();
-                    personaje.notificar();
-                    turno = 1;
-                    count++;
+                personaje.cambiarXY(1, 0);
+                moveHero();
+                for (Enemigo enemy: gameModel.getEnemigos()){
+                    enemy.cambiarXY(); 
+                    moveEnemy(enemy);
                 }
-                else if (turno == 1){
-                    personaje.notificar();
-                    for (Enemigo enemy: gameModel.getEnemigos()){
-                        enemy.cambiarXY(); 
-                        moveEnemy(enemy);
-                    }
-                    turno = 0;
-                }
+                ultimaDireccion = 2;
+                count++;
                 break;
 
             case 'd':
-                if (turno == 0){
-                    personaje.cambiarXY(0, 1);
-                    moveHero();
-                    personaje.notificar();
-                    turno = 1;
-                    count++;
+                personaje.cambiarXY(0, 1);
+                moveHero();
+                for (Enemigo enemy: gameModel.getEnemigos()){
+                    enemy.cambiarXY(); 
+                    moveEnemy(enemy);
                 }
-                else if (turno == 1){
-                    personaje.notificar();
-                    for (Enemigo enemy: gameModel.getEnemigos()){
-                        enemy.cambiarXY(); 
-                        moveEnemy(enemy);
-                    }
-                    turno = 0;
-                }
+                ultimaDireccion = 3;
+                count++;
                 break;
 
             case ' ':
-                for (Enemigo enemy: gameModel.getEnemigos()){
+                for (Enemigo enemy: gameModel.getEnemigos()) {
                     if (enemigoCerca(enemy)){
-                        System.out.println("Enemigo Cerca");
                         desaparecerEnemigo(enemy);
                     }
                 }
                 break;
             }
+
+        
 
         enemigoEncima();
         aliadoEncima();
@@ -234,12 +231,11 @@ public class Controller implements KeyListener{
             
         if (count >= 10){
             count = 0;
-            for (int i = 0; i < 1; i++){
-                crearEnemigo();
+            crearEnemigo();
+            if (countAlly < 10){
                 crearAliado();
+                countAlly++;
             }
-                
-                    
             for (Enemigo enemy: gameModel.getEnemigos()){
                 moveEnemy(enemy);
             }

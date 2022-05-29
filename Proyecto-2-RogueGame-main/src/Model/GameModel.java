@@ -42,6 +42,5 @@ public class GameModel {
     public void eliminarAliado (Aliado ally){
         listaAliados.remove(ally);
     }
-
-    // ArrayList<> de enemigos y aliados
+    
 }

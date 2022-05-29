@@ -1,8 +1,10 @@
 package Common;
 
 public class Enemigo extends Agent{
+    int direccion;
 
     public Enemigo (int posX, int posY){
+        direccion = 0;
         LastPos = new int[2];
         LastPos[X] = posX;
         LastPos[Y] = posY;
@@ -33,12 +35,25 @@ public class Enemigo extends Agent{
     public void cambiarXY(){
         LastPos[X] = Position[X];
         LastPos[Y] = Position[Y];
-    
-        if(HeroPos[X] != Position[X]){
-            Position[X] += (HeroPos[X]-Position[X])/Math.abs(HeroPos[X]-Position[X]);
+
+
+        if (direccion == 0){
+            if(HeroPos[X] != Position[X]){
+                Position[X] += (HeroPos[X]-Position[X])/Math.abs(HeroPos[X]-Position[X]);
+            }
+            else if(HeroPos[Y] != Position[Y]){
+                Position[Y] += (HeroPos[Y]-Position[Y])/Math.abs(HeroPos[Y]-Position[Y]);
+            }
+            direccion = 1;
         }
-        if(HeroPos[Y] != Position[Y]){
-            Position[Y] += (HeroPos[Y]-Position[Y])/Math.abs(HeroPos[Y]-Position[Y]);
+        else if (direccion == 1){
+            if(HeroPos[Y] != Position[Y]){
+                Position[Y] += (HeroPos[Y]-Position[Y])/Math.abs(HeroPos[Y]-Position[Y]);
+            }
+            else if(HeroPos[X] != Position[X]){
+                Position[X] += (HeroPos[X]-Position[X])/Math.abs(HeroPos[X]-Position[X]);
+            }
+            direccion = 0;
         }
     }
 
