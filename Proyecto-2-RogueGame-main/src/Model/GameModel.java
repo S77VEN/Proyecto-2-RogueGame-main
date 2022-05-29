@@ -1,11 +1,12 @@
 package Model;
 import Common.*;
-
 import java.util.ArrayList;
 
 public class GameModel {
     ArrayList<Enemigo> listaEnemigos = new ArrayList<Enemigo>();
     ArrayList<Aliado> listaAliados = new ArrayList<Aliado>();
+    ArrayList<Enemigo> listaEliminarEnemigos = new ArrayList<Enemigo>();
+    ArrayList<Aliado> listaEliminarAliados = new ArrayList<Aliado>();
 
     public void addEnemigo (Enemigo newEnemy){
         listaEnemigos.add(newEnemy);
@@ -13,6 +14,14 @@ public class GameModel {
 
     public void addAliado(Aliado newAlly){
         listaAliados.add(newAlly);
+    }
+
+    public void addEliminarEnemigo(Enemigo enemy){
+        listaEliminarEnemigos.add(enemy);
+    }
+
+    public void addEliminarAliado(Aliado ally){
+        listaEliminarAliados.add(ally);
     }
 
     public ArrayList<Enemigo> getEnemigos(){
@@ -35,12 +44,17 @@ public class GameModel {
         return newAlly;
     }
 
-    public void eliminarEnemigo(Enemigo enemy){
-        listaEnemigos.remove(enemy);
+    public void eliminarEnemigos(){
+        for (Enemigo enemy: listaEliminarEnemigos){
+            listaEnemigos.remove(enemy);
+        }
+        
     }
 
-    public void eliminarAliado (Aliado ally){
-        listaAliados.remove(ally);
+    public void eliminarAliados (){
+        for (Aliado ally: listaEliminarAliados){
+            listaAliados.remove(ally);
+        }
     }
     
 }

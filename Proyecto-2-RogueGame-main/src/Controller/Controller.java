@@ -56,6 +56,7 @@ public class Controller implements KeyListener{
                 moveHero();
             }
         }
+        gameModel.eliminarEnemigos();
     }
 
     public void aliadoEncima (){
@@ -66,6 +67,7 @@ public class Controller implements KeyListener{
                 moveHero();
             }
         }
+        gameModel.eliminarAliados();
     }
 
     public int RandomCoords (){
@@ -89,12 +91,12 @@ public class Controller implements KeyListener{
 
     public void desaparecerEnemigo(Enemigo enemy){
         fieldView.ArrayField[enemy.getPosX()][enemy.getPosY()].clearBox();
-        gameModel.eliminarEnemigo(enemy);
+        gameModel.addEliminarEnemigo(enemy);
     }
 
     public void desaparecerAliado(Aliado ally){
         fieldView.ArrayField[ally.getPosX()][ally.getPosY()].clearBox();
-        gameModel.eliminarAliado(ally);
+        gameModel.addEliminarAliado(ally);
     }
 
     public boolean enemigoCerca (Enemigo enemy){
@@ -215,6 +217,7 @@ public class Controller implements KeyListener{
                         desaparecerEnemigo(enemy);
                     }
                 }
+                gameModel.eliminarEnemigos();
                 break;
             }
 
