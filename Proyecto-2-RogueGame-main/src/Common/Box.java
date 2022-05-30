@@ -2,9 +2,8 @@ package Common;
 import java.awt.Dimension;
 
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
-public class Box extends JPanel implements Constants {
+public class Box extends JLabel implements Constants {
     private int[] coords;
     public JLabel saludHeroe;
 
@@ -19,23 +18,18 @@ public class Box extends JPanel implements Constants {
     }
 
     public void setAsHero (int saludH){
-        this.add(saludHeroe);
-        saludHeroe.setText(String.valueOf(saludH));
-        setBackground(HERO_COLOR);
-        
-        
+        setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/hero2.png")));
     }
 
     public void setAsEnemy(){
-        setBackground(ENEMY_COLOR);
+        setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/enemy2.png")));
     }
 
     public void setAsAlly(){
-        setBackground(ALLY_COLOR);
+        setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/ally2.png")));
     }
 
     public void clearBox(){
-        this.remove(saludHeroe);
-        setBackground(BG_COLOR);
+        setIcon(null);
     }
 }

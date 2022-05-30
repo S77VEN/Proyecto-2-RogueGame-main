@@ -15,6 +15,7 @@ public class Controller implements KeyListener{
     int ultimaDireccion;
     int count;
     int turno;
+    int score;
 
 
     public Controller (){
@@ -164,7 +165,7 @@ public class Controller implements KeyListener{
 
     @Override
     public void keyTyped(KeyEvent e) {
-        System.out.println(e.getKeyChar());
+        score++;
 
         switch(e.getKeyChar()){
             case 'w':
@@ -215,6 +216,7 @@ public class Controller implements KeyListener{
                 for (Enemigo enemy: gameModel.getEnemigos()) {
                     if (enemigoCerca(enemy)){
                         desaparecerEnemigo(enemy);
+                        score += 10;
                     }
                 }
                 gameModel.eliminarEnemigos();
@@ -244,6 +246,7 @@ public class Controller implements KeyListener{
             }
         }
         if (personaje.getSalud() <= 0){
+            System.out.println("Puntaje: " + score);
             System.exit(0);
         }
     }
