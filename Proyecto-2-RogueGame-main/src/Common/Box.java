@@ -1,6 +1,5 @@
 package Common;
 import java.awt.Dimension;
-
 import javax.swing.JLabel;
 
 public class Box extends JLabel implements Constants {
