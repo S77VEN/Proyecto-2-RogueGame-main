@@ -50,6 +50,18 @@ public class Controller implements KeyListener{
         return true;
     }
 
+    public boolean outOfLimitY (int posY){
+        if (personaje.getPosY() + posY <= 20 && personaje.getPosY() + posY >= 0 )
+            return true;
+        return false;
+    }
+
+    public boolean outOfLimitX (int posX){
+        if (personaje.getPosX() + posX <= 20 && personaje.getPosX() + posX >= 0 )
+            return true;
+        return false;
+    }
+
     public void enemigoEncima (){
         for (Enemigo enemy: gameModel.getEnemigos()){
             if (enemy.getPosX() == personaje.getPosX() && enemy.getPosY() == personaje.getPosY() ){
@@ -171,8 +183,10 @@ public class Controller implements KeyListener{
 
         switch(e.getKeyChar()){
             case 'w':
-                personaje.cambiarXY(-1, 0);
-                moveHero();
+                if (outOfLimitX(-1)){
+                    personaje.cambiarXY(-1, 0);
+                    moveHero();
+                }
                 for (Enemigo enemy: gameModel.getEnemigos()){
                     enemy.cambiarXY(); 
                     moveEnemy(enemy);
@@ -182,8 +196,10 @@ public class Controller implements KeyListener{
                 break;
 
             case 'a':
-                personaje.cambiarXY(0, -1);
-                moveHero();
+                if (outOfLimitY(-1)){
+                    personaje.cambiarXY(0, -1);
+                    moveHero();
+                }
                 for (Enemigo enemy: gameModel.getEnemigos()){
                     enemy.cambiarXY(); 
                     moveEnemy(enemy);
@@ -193,8 +209,10 @@ public class Controller implements KeyListener{
                 break;
 
             case 's':
-                personaje.cambiarXY(1, 0);
-                moveHero();
+                if (outOfLimitX(1)){
+                    personaje.cambiarXY(1, 0);
+                    moveHero();
+                }
                 for (Enemigo enemy: gameModel.getEnemigos()){
                     enemy.cambiarXY(); 
                     moveEnemy(enemy);
@@ -204,8 +222,10 @@ public class Controller implements KeyListener{
                 break;
 
             case 'd':
-                personaje.cambiarXY(0, 1);
-                moveHero();
+                if (outOfLimitY(1)){
+                    personaje.cambiarXY(0, 1);
+                    moveHero();
+                }
                 for (Enemigo enemy: gameModel.getEnemigos()){
                     enemy.cambiarXY(); 
                     moveEnemy(enemy);
@@ -233,6 +253,7 @@ public class Controller implements KeyListener{
                 count++;
                 break;
             }
+        
 
         enemigoEncima();
         aliadoEncima();
