@@ -18,6 +18,9 @@ public class Controller implements KeyListener{
 
 
     public Controller (){
+        System.out.print("\033[H\033[2J");  
+        System.out.flush(); 
+        
         count = 0;
         countAlly = 0;
         ultimaDireccion = 0;
