@@ -1,5 +1,4 @@
 package View;
-//import java.lang.reflect.Field;
 import javax.swing.*;
 import java.awt.GridLayout;
 import Common.Box;
@@ -8,12 +7,13 @@ import Common.*;
 
 
 public class GameFieldView extends JFrame implements Constants{
-    public JPanel Field;
+    public CustomPanel Field;
     public Box[][] ArrayField;
 
     public GameFieldView(){
+        setTitle("Rogue Game");
 
-        Field = new JPanel();
+        Field = new CustomPanel();
         ArrayField = new Box[FIELD_SIZE][FIELD_SIZE];
 
         Field.setLayout(new GridLayout(FIELD_SIZE,FIELD_SIZE));
@@ -25,13 +25,10 @@ public class GameFieldView extends JFrame implements Constants{
             }
         }
 
-        this.ArrayField[0][0].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/hero2.png")));;
-        this.add(Field);
+        this.ArrayField[0][0].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/hero2.png")));
+        this.setContentPane(Field);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
         this.setVisible(true);
     }
-    
-    // Funciones para obtener las coordenadas de los labels que se van a utilizar...
-    
 }

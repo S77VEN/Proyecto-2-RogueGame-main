@@ -14,13 +14,11 @@ public class Controller implements KeyListener{
     int countAlly;
     int ultimaDireccion;
     int count;
-    int turno;
     int score;
 
 
     public Controller (){
         count = 0;
-        turno = 0;
         countAlly = 0;
         ultimaDireccion = 0;
 
@@ -66,6 +64,7 @@ public class Controller implements KeyListener{
                 desaparecerAliado(ally);
                 personaje.aumentarSalud();
                 moveHero();
+                score += 10;
             }
         }
         gameModel.eliminarAliados();
@@ -220,6 +219,7 @@ public class Controller implements KeyListener{
                     }
                 }
                 gameModel.eliminarEnemigos();
+                score--;
                 break;
 
             case 'e':
@@ -255,6 +255,11 @@ public class Controller implements KeyListener{
             System.out.println("Puntaje: " + score);
             System.exit(0);
         }
+
+        System.out.print("\033[H\033[2J");  
+        System.out.flush(); 
+        System.out.println("SALUD: " + personaje.getSalud());
+        System.out.println("SCORE: " + score);
     }
 
     @Override
