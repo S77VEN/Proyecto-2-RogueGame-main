@@ -48,8 +48,10 @@ public class Hero implements Constants, SujetoObservado{
     }
 
     public void disminuirSalud(){
-        this.salud--;
-        System.out.println("SALUD: " + this.salud);
+        if (salud >= 0){
+            this.salud--;
+            System.out.println("SALUD: " + this.salud);
+        }
     }
 
     public void cambiarXY(int posX, int posY){

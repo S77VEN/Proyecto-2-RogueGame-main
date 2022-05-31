@@ -10,7 +10,6 @@ import Common.*;
 public class GameFieldView extends JFrame implements Constants{
     public JPanel Field;
     public Box[][] ArrayField;
-    
 
     public GameFieldView(){
 
@@ -25,7 +24,8 @@ public class GameFieldView extends JFrame implements Constants{
                 Field.add(ArrayField[i][j]);
             }
         }
-        this.ArrayField[0][0].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/hero2.png")));
+
+        this.ArrayField[0][0].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/hero2.png")));;
         this.add(Field);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();

@@ -12,7 +12,6 @@ public class Box extends JLabel implements Constants {
         coords = new int[2];
         coords[X] = posX;
         coords[Y] = posY;
-        setBackground(BG_COLOR);
         setPreferredSize(new Dimension(BOX_WIDTH,BOX_HEIGHT));
         
     }

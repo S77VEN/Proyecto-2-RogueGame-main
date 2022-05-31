@@ -221,9 +221,15 @@ public class Controller implements KeyListener{
                 }
                 gameModel.eliminarEnemigos();
                 break;
-            }
 
-        
+            case 'e':
+                for (Enemigo enemy: gameModel.getEnemigos()){
+                   enemy.cambiarXY(); 
+                   moveEnemy(enemy);
+                }
+                count++;
+                break;
+            }
 
         enemigoEncima();
         aliadoEncima();
