@@ -12,7 +12,5 @@ public class CustomPanel extends JPanel {
         g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
         setOpaque(false);
         super.paint(g);
-
     }
-    
 }
