@@ -7,11 +7,6 @@ public class GameModel {
     ArrayList<Aliado> listaAliados = new ArrayList<Aliado>();
     ArrayList<Enemigo> listaEliminarEnemigos = new ArrayList<Enemigo>();
     ArrayList<Aliado> listaEliminarAliados = new ArrayList<Aliado>();
-    Hero personaje = new Hero();
-
-    public Hero getHeroe (){
-        return personaje;
-    }
 
     public void addEnemigo (Enemigo newEnemy){
         listaEnemigos.add(newEnemy);

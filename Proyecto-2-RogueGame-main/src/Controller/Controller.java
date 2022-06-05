@@ -30,7 +30,7 @@ public class Controller implements KeyListener{
         fieldView.setFocusable(true);
 
         gameModel = new GameModel();
-        personaje = gameModel.getHeroe();
+        personaje = new Hero();
     }
 
     public boolean comprobarCasilla (int newX, int newY){
